@@ -2,7 +2,7 @@ class ClipsController < ApplicationController
   # GET /clips
   # GET /clips.xml
   def index
-    @clips = Clip.all
+    @clips = Clip.order([:category_id, :title]).all(:include => :category)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -25,6 +25,7 @@ class ClipsController < ApplicationController
   # GET /clips/new.xml
   def new
     @clip = Clip.new
+    @categories = Category.order(:name).all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,6 +36,7 @@ class ClipsController < ApplicationController
   # GET /clips/1/edit
   def edit
     @clip = Clip.find(params[:id])
+    @categories = Category.order(:name).all
   end
 
   # POST /clips

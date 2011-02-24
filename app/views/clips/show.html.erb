@@ -6,13 +6,14 @@
 </p>
 
 <p>
-  <b>Description:</b>
-  <%= @clip.description %>
+  <b>Category:</b>
+  <%= link_to @clip.category.name, @clip.category %>
 </p>
 
 <p>
-  <b>Category:</b>
-  <%= @clip.category_id %>
+  <b>Image:</b>
+  <%= image_tag @clip.image.url(:medium) %>
+  <%= image_tag @clip.image.url(:thumb) %>
 </p>
 
 

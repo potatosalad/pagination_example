@@ -3,10 +3,13 @@ class CategoriesController < ApplicationController
   # GET /categories.xml
   def index
     @categories = Category.all
+    @category = params[:category_id].blank? ? @categories.first : Category.find(params[:category_id])
+    @clips = Clip.where(:category_id => @category.id).order(:title).paginate :page => params[:page], :per_page => 3
 
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @categories }
+      format.js
     end
   end
 

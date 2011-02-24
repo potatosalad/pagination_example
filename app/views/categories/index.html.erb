@@ -10,13 +10,17 @@
 
 <% @categories.each do |category| %>
   <tr>
-    <td><%= category.name %></td>
+    <td><%= link_to category.name, categories_url(:category_id => category.id), :class => 'ajax_link', :remote => true %></td>
     <td><%= link_to 'Show', category %></td>
     <td><%= link_to 'Edit', edit_category_path(category) %></td>
     <td><%= link_to 'Destroy', category, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
+
+<div id="results">
+  <%= render :partial => 'clips/search_results' %>
+</div>
 
 <br />
 

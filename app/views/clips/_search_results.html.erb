@@ -1,0 +1,9 @@
+<div id="results">
+  <h3 id="category_name"><%= @category.name %></h3>
+  <ul id="clips">
+    <% for clip in @clips -%>
+    <li><%= link_to(image_tag(clip.image.url(:thumb))+' '+clip.title, clip) %></li>
+    <% end -%>
+  </ul>
+  <%= will_paginate @clips, :class => 'pagination ajax' %>
+</div>
